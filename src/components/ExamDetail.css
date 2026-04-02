@@ -1,0 +1,63 @@
+.exam-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.exam-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.exam-tabs .nav-link {
+    color: #6c757d;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding-bottom: 12px;
+    font-weight: 500;
+}
+
+.exam-tabs .nav-link.active {
+    color: #1a6cb9 !important;
+    background: none !important;
+    border-bottom-color: #1a6cb9 !important;
+}
+
+.exam-detail-title {
+    color: #212529;
+    font-size: 1.75rem;
+}
+
+.chevron-icon {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.transition-transform {
+    transition: transform 0.2s ease-in-out;
+}
+
+.rotate-270 {
+    transform: rotate(-90deg);
+}
+
+.exam-link-card {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px;
+}
+
+.exam-icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: #f06292;
+    /* The pink shown in image */
+    border-radius: 8px;
+}
+
+.exam-action-link {
+    color: #1a6cb9;
+    cursor: pointer;
+}
+
+.exam-action-link:hover {
+    text-decoration: underline;
+}

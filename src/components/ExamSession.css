@@ -1,0 +1,264 @@
+.exam-session-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-bottom: 20px;
+    /* Reduced from 100px as we'll use specific button bottom margin */
+}
+
+.info-card {
+    margin-bottom: 4rem !important;
+    /* Increased space between table and exam */
+}
+
+.exam-title {
+    font-size: 2.2rem;
+    color: #212529;
+}
+
+.back-btn {
+    background-color: #dee2e6;
+    border: none;
+    color: #495057;
+    font-weight: 500;
+    padding: 8px 16px;
+}
+
+/* Timer Box */
+.timer-box {
+    border: 2px solid #dc3545;
+    color: #333;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+/* Question Info Card */
+.question-info-card {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
+.flag-icon {
+    font-size: 1.1rem;
+}
+
+/* Question Card */
+.question-card {
+    background-color: #e7f3ff;
+    /* Very light blue background */
+    border-radius: 8px;
+    min-height: 250px;
+}
+
+.question-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.custom-option .form-check-input {
+    margin-top: 0.35rem;
+}
+
+.custom-option .form-check-label {
+    padding-left: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Exam Navigation */
+.navigation-card {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px;
+}
+
+.nav-box {
+    width: 32px;
+    height: 42px;
+    border: 1px solid #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #444;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-box.answered {
+    background: linear-gradient(to top, #6c757d 50%, #fff 50%);
+}
+
+.nav-box.current {
+    border: 2px solid #000;
+    font-weight: 700;
+}
+
+.nav-box.flagged::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12px 12px 0;
+    border-color: transparent #ff0000 transparent transparent;
+}
+
+/* Buttons */
+.next-btn {
+    background-color: #1a4a9e;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.6rem 1.5rem !important;
+}
+
+.prev-page-btn,
+.hide-btn {
+    background-color: #ced4da;
+    border: none;
+    color: #444;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.prev-page-btn:hover,
+.hide-btn:hover {
+    background-color: #adb5bd;
+    color: #000;
+}
+
+.hide-btn {
+    padding: 0.2rem 1rem !important;
+}
+
+.clear-choice-link:hover {
+    text-decoration: underline;
+}
+
+.summary-table {
+    border: 1px solid #dee2e6;
+}
+
+.summary-table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 0.75rem;
+}
+
+.summary-table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+.return-attempt-btn {
+    background-color: #ced4da;
+    border: none;
+    color: #444;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.submit-finish-btn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+}
+
+.timer-box.border-danger {
+    border-color: #ff4d4d !important;
+}
+
+.summary-question-link:hover {
+    text-decoration: underline !important;
+}
+
+.navigation-card .d-flex {
+    scrollbar-width: thin;
+}
+
+.navigation-card .d-flex::-webkit-scrollbar {
+    height: 4px;
+}
+
+.navigation-card .d-flex::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.confirm-modal .modal-dialog {
+    max-width: 320px;
+    margin: 1.75rem auto;
+}
+
+.confirm-modal .modal-content {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.confirm-modal .modal-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.confirm-modal .modal-title {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.confirm-modal .modal-body {
+    padding: 2rem 1.5rem;
+    font-size: 1rem;
+    color: #212529;
+}
+
+.confirm-modal .modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 0 !important;
+}
+
+.confirm-submit-btn {
+    background-color: #0d6efd;
+    color: #fff;
+    border: 3px solid #000;
+    /* Distinct thick border as seen in image */
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4rem 1.2rem !important;
+    transition: all 0.2s ease;
+}
+
+.confirm-submit-btn:hover {
+    background-color: #0b5ed7;
+    border-color: #333;
+}
+
+.cancel-btn {
+    background-color: #ced4da;
+    border: none;
+    color: #444;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4rem 1.2rem !important;
+}
+
+.cancel-btn:hover {
+    background-color: #adb5bd;
+    color: #000;
+}
+
+@media (max-width: 1200px) {
+    .exam-session-container {
+        padding: 1rem;
+    }
+}
