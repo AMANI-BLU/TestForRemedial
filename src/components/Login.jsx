@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -6,11 +6,19 @@ import './Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Skip validation for this clone
-        navigate('/dashboard');
+
+        // Static validation
+        if (username === 'student' && password === 'student123') {
+            navigate('/dashboard');
+        } else {
+            setError('Invalid username or password');
+        }
     };
 
     return (
@@ -33,11 +41,15 @@ const Login = () => {
                 </div>
 
                 <Form className="px-1" onSubmit={handleSubmit}>
+                    {error && <div className="alert alert-danger py-2 small mb-3">{error}</div>}
                     <Form.Group className="mb-2" controlId="formUsername">
                         <Form.Control
                             type="text"
-                            placeholder="student"
+                            placeholder="Username"
                             className="custom-input"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
                         />
                     </Form.Group>
 
@@ -46,6 +58,9 @@ const Login = () => {
                             type="password"
                             placeholder="••••••"
                             className="custom-input password-input"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </Form.Group>
 

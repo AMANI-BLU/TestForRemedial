@@ -12,6 +12,7 @@ const ExamSession = () => {
 
     const [isSummaryView, setIsSummaryView] = useState(false);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [isTimerHidden, setIsTimerHidden] = useState(false);
 
     const questions = [
         {
@@ -91,7 +92,6 @@ const ExamSession = () => {
         setIsSummaryView(false);
     };
 
-    const q = questions[currentQuestion];
     const isLastQuestion = currentQuestion === questions.length - 1;
 
     if (isSummaryView) {
@@ -136,6 +136,13 @@ const ExamSession = () => {
                         <div className="timer-box border-danger text-danger px-3 py-1 mb-3 align-self-end">
                             Time left {formatTime(timeLeft)}
                         </div>
+
+                        {questions.length - Object.keys(answers).length > 0 && (
+                            <div className="alert alert-warning w-100 text-center mb-3">
+                                <span className="fw-bold">Warning:</span> You have {questions.length - Object.keys(answers).length} unanswered question(s).
+                            </div>
+                        )}
+
                         <div className="small text-muted mb-3">
                             This attempt must be submitted by Thursday, 22 June 2023, 7:39 AM.
                         </div>
@@ -190,7 +197,7 @@ const ExamSession = () => {
                     </Table>
                 </Card>
 
-                <Row className="g-4">
+                <Row className="g-3">
                     {/* Left Sidebar: Question Info */}
                     <Col lg={2}>
                         <Card className="question-info-card border-0 bg-light p-3">
@@ -208,11 +215,19 @@ const ExamSession = () => {
 
                     {/* Main Content: Question and Timer */}
                     <Col lg={8} className="mb-4">
-                        <div className="d-flex justify-content-end align-items-center mb-2 gap-2">
-                            <div className="timer-box px-3 py-1 fw-bold">
-                                Time left {formatTime(timeLeft)}
-                            </div>
-                            <Button variant="secondary" className="hide-btn py-1 px-3">Hide</Button>
+                        <div className="d-flex justify-content-end align-items-center mb-2 gap-2" style={{ minHeight: '34px' }}>
+                            {!isTimerHidden && (
+                                <div className="timer-box px-3 py-1 fw-bold">
+                                    {`Time left ${formatTime(timeLeft)}`}
+                                </div>
+                            )}
+                            <Button
+                                variant="secondary"
+                                className="hide-btn py-1 px-3"
+                                onClick={() => setIsTimerHidden(!isTimerHidden)}
+                            >
+                                {isTimerHidden ? 'Show' : 'Hide'}
+                            </Button>
                         </div>
 
                         <Card className="question-card border-0 shadow-sm p-4 mb-4">
@@ -267,7 +282,7 @@ const ExamSession = () => {
                     <Col lg={2}>
                         <Card className="navigation-card border-0 shadow-sm p-3">
                             <div className="fw-bold mb-3">Exam Navigation</div>
-                            <div className="d-flex flex-wrap gap-2 mb-3 flex-nowrap overflow-auto pb-1">
+                            <div className="d-flex flex-wrap gap-1 mb-3">
                                 {questions.map((_, index) => (
                                     <div
                                         key={index}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Nav, Card, Button, Modal, Form, Table, Collapse } from 'react-bootstrap';
+import { Container, Card, Button, Modal, Form, Table } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
 import './ExamDetail.css';
 
 const ExamDetail = () => {
@@ -9,65 +8,62 @@ const ExamDetail = () => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [isExpanded, setIsExpanded] = useState(true);
+    const [pin, setPin] = useState('');
+    const [pinError, setPinError] = useState('');
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
-
     const toggleExpand = () => setIsExpanded(!isExpanded);
-
-    const studentInfo = [
-        { label1: 'Full Name:', value1: 'Student User', label2: 'Institution:', value2: 'NA' },
-        { label1: 'Is Blind / Is Deaf:', value1: 'No / No', label2: 'Institution ID:', value2: 'NA' },
-        { label1: 'Exam Center:', value1: 'Addis Ababa Region', label2: 'Enrollment Type:', value2: 'NA' },
-        { label1: 'Stream:', value1: 'Natural Science', label2: 'Gender:', value2: 'Female' },
-    ];
 
     return (
         <Container fluid className="exam-detail-container py-4">
             <div className="container-1200 mx-auto px-lg-0 px-3">
-                {/* Basic Information Table */}
-                <Card className="info-card border-0 mb-5">
+                {/* Profile Information Table */}
+                <Card className="info-card border-0 mb-4">
                     <div className="info-header py-2 text-center text-white fw-bold">
                         Basic Information
                     </div>
                     <Table striped borderless className="mb-0 info-table">
                         <tbody>
-                            {studentInfo.map((row, index) => (
-                                <tr key={index}>
-                                    <td className="label-cell">{row.label1}</td>
-                                    <td className="value-cell">{row.value1}</td>
-                                    <td className="label-cell">{row.label2}</td>
-                                    <td className="value-cell">{row.value2}</td>
-                                </tr>
-                            ))}
+                            <tr>
+                                <td className="label-cell">Full Name:</td>
+                                <td className="value-cell">Abebe Bikila</td>
+                                <td className="label-cell">Institution:</td>
+                                <td className="value-cell">Addis Ababa University</td>
+                            </tr>
+                            <tr>
+                                <td className="label-cell">Is Blind / Is Deaf:</td>
+                                <td className="value-cell">No / No</td>
+                                <td className="label-cell">Institution ID:</td>
+                                <td className="value-cell">R/001/16</td>
+                            </tr>
+                            <tr>
+                                <td className="label-cell">Exam Center:</td>
+                                <td className="value-cell">Addis Ababa Region</td>
+                                <td className="label-cell">Enrollment Type:</td>
+                                <td className="value-cell">Regular</td>
+                            </tr>
+                            <tr>
+                                <td className="label-cell">Stream:</td>
+                                <td className="value-cell">Natural Science</td>
+                                <td className="label-cell">Gender:</td>
+                                <td className="value-cell">Male</td>
+                            </tr>
                         </tbody>
                     </Table>
                 </Card>
-
-                {/* Tabs and Content */}
-                <Nav variant="tabs" defaultActiveKey="exam" className="mb-4 exam-tabs">
-                    <Nav.Item>
-                        <Nav.Link eventKey="exam" className="px-4">Exam</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="results" className="px-4">Results</Nav.Link>
-                    </Nav.Item>
-                </Nav>
 
                 {/* Content */}
                 <div>
                     <div className="d-flex justify-content-between align-items-center mb-3">
                         <h3 className="exam-detail-title cursor-pointer" onClick={toggleExpand}>
                             <span className={`chevron-icon me-2 d-inline-block transition-transform ${isExpanded ? '' : 'rotate-270'}`}>⌄</span>
-                            Accounting and Finance Exit Exam 2015
+                            Remedial Physics Program Examination
                         </h3>
-                        <span className="text-primary small cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-                            {isExpanded ? 'Collapse all' : 'Expand all'}
-                        </span>
                     </div>
 
-                    <Collapse in={isExpanded}>
-                        <div>
+                    {isExpanded && (
+                        <div className="ps-4">
                             <Card className="exam-link-card border-0 shadow-sm p-4 mb-4">
                                 <div className="d-flex align-items-center">
                                     <div className="exam-icon-box me-3 d-flex align-items-center justify-content-center">
@@ -79,13 +75,13 @@ const ExamDetail = () => {
                                     <div>
                                         <div className="text-muted small fw-bold mb-0">EXAM</div>
                                         <div className="exam-action-link text-primary fw-bold fs-5 cursor-pointer" onClick={handleShow}>
-                                            Exit Exam 2015
+                                            Remedial Physics Program Examination
                                         </div>
                                     </div>
                                 </div>
                             </Card>
                         </div>
-                    </Collapse>
+                    )}
                 </div>
             </div>
 
@@ -98,16 +94,24 @@ const ExamDetail = () => {
                     <hr className="mt-0 mb-3" />
 
                     <div className="mb-4">
-                        <h4 className="fw-bold mb-1">Password</h4>
-                        <p className="text-muted small mb-3">To start this exam you need to know the exam password</p>
+                        <h4 className="fw-bold mb-1">Exam Pin</h4>
+                        <p className="text-muted small mb-3">To start this exam you need to enter the 4-character exam pin</p>
 
-                        <Form.Group controlId="examPassword">
-                            <Form.Label className="small mb-1">Exam password</Form.Label>
+                        <Form.Group controlId="examPin">
+                            <Form.Label className="small mb-1">Exam Pin</Form.Label>
                             <Form.Control
                                 type="password"
-                                className="modal-custom-input"
+                                className={`modal-custom-input ${pinError ? 'is-invalid' : ''}`}
+                                value={pin}
+                                onChange={(e) => {
+                                    setPin(e.target.value);
+                                    if (pinError) setPinError('');
+                                }}
+                                maxLength={4}
+                                placeholder="••••"
                                 autoFocus
                             />
+                            {pinError && <div className="invalid-feedback small">{pinError}</div>}
                         </Form.Group>
                     </div>
 
@@ -122,7 +126,19 @@ const ExamDetail = () => {
                     <hr className="my-4" />
 
                     <div className="d-flex gap-2">
-                        <Button variant="primary" className="start-btn py-2 px-4" onClick={() => navigate(`/exam-session/${id}`)}>
+                        <Button
+                            variant="primary"
+                            className="start-btn py-2 px-4"
+                            onClick={() => {
+                                if (pin === '1234') {
+                                    navigate(`/exam-session/${id}`);
+                                } else if (pin.length !== 4) {
+                                    setPinError('Pin must be 4 characters');
+                                } else {
+                                    setPinError('Invalid exam pin');
+                                }
+                            }}
+                        >
                             Start exam
                         </Button>
                         <Button variant="secondary" className="cancel-btn py-2 px-4 shadow-none" onClick={handleClose}>

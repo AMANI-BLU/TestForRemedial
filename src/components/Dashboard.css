@@ -1,8 +1,57 @@
 .dashboard-container {
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     background-color: #ffffff;
+    min-height: 100vh;
+}
+
+/* Custom Dashboard Tabs */
+.custom-dashboard-tabs {
+    border-bottom: 2px solid #f0f2f5;
+}
+
+.dashboard-tab-item {
+    font-size: 1.1rem;
+    color: #555;
+    border-bottom: 4px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.dashboard-tab-item:hover {
+    color: #1a6cb9;
+}
+
+.dashboard-tab-item.active {
+    color: #1a6cb9;
+    border-bottom-color: #1a6cb9;
+    font-weight: 600;
+}
+
+/* Instructions Card */
+.instructions-card {
+    background-color: #f8f9fa;
+    border-radius: 12px !important;
+}
+
+.instructions-list {
+    list-style-type: none;
+}
+
+.instructions-list li {
+    position: relative;
+    padding-bottom: 12px;
+    font-size: 1.05rem;
+    color: #444;
+}
+
+.instructions-list li::before {
+    content: "•";
+    position: absolute;
+    left: -1.5rem;
+    color: #1a6cb9;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 /* My Exam Styles */
@@ -29,14 +78,12 @@
     overflow: hidden;
     height: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    max-width: 270px;
 }
 
 .exam-item-card .card-body {
-    padding: 1.5rem !important;
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 0.75rem !important;
+    min-height: 80px;
 }
 
 .mosaic-thumbnail {
